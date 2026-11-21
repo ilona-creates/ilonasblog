@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Short &amp; Long writing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+/* Lora everywhere. Black titles, slate body. White paper. */
+:root{color-scheme:light;
+  --paper:#FFFFFF;--ink:#000;--body:#2f3b4c;--ink-soft:#5a6474;--blue:#3F6899;--blue-ink:#2E5688;--rule:rgba(29,43,79,0.2);
+  --serif:'PT Serif',Georgia,serif;
+  --sans:'Lora',Georgia,serif;
+  --max:1100px}
+*{margin:0;padding:0;box-sizing:border-box;min-width:0}
+html{overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;font-size:18px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;font-variant-numeric:lining-nums;font-feature-settings:'lnum' 1;overflow-x:clip}
+p{text-wrap:pretty}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+header{padding:28px 0}
+.header-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 20px}
+.brand-name{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;white-space:nowrap}
+.nav-link{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;
+  border-bottom:1px solid var(--rule);padding:10px 0 4px;transition:border-color .2s ease,color .2s ease}
+.nav-link:hover,.nav-link[aria-current]{border-bottom-color:var(--ink)}
+.link{color:inherit;text-decoration:underline;text-decoration-color:rgba(63,104,153,.5);text-decoration-thickness:1px;text-underline-offset:7px;transition:color .2s ease,text-decoration-color .2s ease}
+.link:hover{color:var(--blue-ink);text-decoration-color:var(--blue)}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+footer.page{padding:48px 0 56px;text-align:center;font-size:16px;color:var(--ink-soft);border-top:1px solid var(--rule)}
+@media (max-width:720px){body{font-size:18px}.wrap{padding:0 24px}.brand-name,.nav-link{font-size:15px;letter-spacing:.04em}}
+
+main .wrap{max-width:calc(36em + 64px)}
+.page-title{font-family:var(--sans);font-weight:600;letter-spacing:-.005em;font-size:clamp(31px,3.9vw,50px);line-height:1.18;padding:88px 0 56px;text-wrap:balance}
+/* left side panel, like Seth's blog */
+.layout{display:grid;grid-template-columns:320px minmax(0,1fr);min-height:100vh}
+.side{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;border-right:1px solid #e3e5e8;padding:40px 32px}
+.side-brand{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--ink);margin-bottom:48px}
+.side-photo{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:50% 30%;flex:none}
+.side-name{font-weight:600;font-size:22px;line-height:1.2}
+.side-h{font-size:17px;font-weight:700;margin:0 0 8px}
+.side-p{font-family:var(--serif);font-size:16px;line-height:1.45;color:var(--body);margin:0 0 12px}
+.sub-row{display:flex;gap:8px;align-items:stretch}
+.sub-row label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.sub-row input{flex:1 1 auto;width:0;font:inherit;font-size:16px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid #c9ccd2;border-radius:0;padding:8px 0;min-height:44px}
+.sub-row input::placeholder{color:var(--ink-soft);opacity:.7}
+.sub-row input:focus{outline:none;border-bottom-color:var(--ink)}
+.sub-row button{flex:none;font:inherit;font-size:15px;font-weight:600;color:var(--ink-soft);background:#fff;border:1px solid #c9ccd2;border-radius:4px;padding:0 14px;min-height:44px;cursor:pointer;transition:border-color .2s ease,color .2s ease}
+.sub-row button:hover{border-color:#8f949c;color:var(--ink)}
+.sub-row button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.sub-msg{font-size:15px;margin-top:8px;color:var(--ink-soft)}
+.sub-msg:empty{display:none}
+.sub-msg.err{color:#a3261b}
+.sub-done{font-family:var(--serif);font-size:16px;color:var(--ink);margin:0}
+.side-list{margin-top:44px}
+.side-month{font-size:17px;font-weight:700;margin:0 0 6px}
+.side-titles{list-style:none;margin:0 0 24px;padding:0}
+.side-titles li{display:flex;align-items:baseline;gap:12px;margin:0;padding:9px 0;line-height:1.35;border-bottom:1px solid #eceef1}
+.side-titles li a{flex:1 1 auto;min-width:0}
+.side-titles time{flex:none;font-size:15px;color:var(--ink-soft);white-space:nowrap}
+.side-titles li:last-child{border-bottom:0}
+.side-titles a{display:block;font-size:16px;color:var(--ink);text-decoration:none;white-space:nowrap;overflow:hidden;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent)}
+.side-titles a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-color:#c9ccd2}
+.side-all{display:inline-block;font-size:16px;font-weight:600;color:var(--ink-soft);text-decoration:none;border-bottom:1px solid #c9ccd2;padding:8px 0 2px}
+.side-all:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.content main{padding-top:24px}
+.note:first-of-type{border-top:0;padding-top:40px}
+.site-foot{grid-column:2}
+
+/* phones and tablets: name and sign-up on top, writing next, list of titles last */
+@media (max-width:900px){
+  .layout{display:flex;flex-direction:column}
+  .side{display:contents}
+  .content{order:1}
+  .side-top{order:2;padding:32px 24px 0;border-top:1px solid #e3e5e8}
+  /* sign-up stays fixed at the bottom of the screen */
+  .side-top .side-block{position:fixed;left:0;right:0;bottom:0;z-index:40;background:#fff;border-top:1px solid #e3e5e8;padding:10px 16px calc(12px + env(safe-area-inset-bottom))}
+  .side-top .side-block .side-p{font-size:15px;margin:0 0 4px}
+  .side-top .side-block .sub-row input,.side-top .side-block .sub-row button{min-height:40px}
+  body{padding-bottom:120px}
+  .side-list{order:3;margin:0;padding:24px 24px 24px}
+  .site-foot{order:4}
+  .side-brand{margin-bottom:24px}.side-photo{width:56px;height:56px}.side-name{font-size:19px}
+}
+/* one short note: date, title, body */
+.note{border-top:1px solid var(--ink);padding:44px 0 72px}
+.date{display:block;margin-bottom:14px;font-size:16px;font-weight:700;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);line-height:1.4}
+.note h2{font-family:var(--sans);font-weight:600;font-size:35px;line-height:1.15;letter-spacing:-.005em;margin:14px 0 24px;text-wrap:balance}
+.note h2 a{color:inherit;text-decoration:none}
+.note .text{font-family:var(--serif);font-size:18px;line-height:1.5;color:var(--body)}
+.note .text p{margin:0 0 1.05em}
+.note .text a{color:#1a47e5;text-decoration:none}.note .text a:hover{text-decoration:underline}
+/* Short / Long label, long pieces open in a pop-up */
+.note.is-long .text{max-height:var(--preview,70vh);overflow:hidden;-webkit-mask-image:linear-gradient(#000 82%,transparent);mask-image:linear-gradient(#000 82%,transparent)}
+.read-btn{display:none;font:inherit;font-size:17px;font-weight:600;color:var(--ink-soft);background:#fff;border:1.5px solid #c9ccd2;border-radius:4px;padding:11px 26px;min-height:48px;cursor:pointer;margin-top:8px;transition:border-color .2s ease,color .2s ease}
+.note.is-long .read-btn{display:inline-block}
+.read-btn:hover{border-color:#8f949c;color:var(--ink)}.read-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.pop{position:fixed;inset:0;z-index:50;display:none;background:#fff}
+.pop.open{display:flex}
+.pop-box{position:relative;background:#fff;width:100%;height:100%;overflow-y:auto;padding:clamp(40px,6vw,80px) clamp(24px,7vw,96px);overscroll-behavior:contain;animation:up .28s ease}
+.pop-inner{max-width:36em;margin:0 auto}
+.pop-close{position:fixed;top:clamp(16px,3vw,32px);right:clamp(16px,3vw,32px);z-index:1;width:44px;height:44px;font:400 26px/1 var(--serif);color:var(--ink);background:#fff;border:1px solid var(--ink);border-radius:4px;cursor:pointer}
+.pop-close:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.pop h2{font-family:var(--sans);font-weight:600;font-size:35px;line-height:1.15;margin:14px 0 28px;text-wrap:balance}
+.pop .text{font-family:var(--serif);font-size:18px;line-height:1.5;color:var(--body)}
+.pop .text p{margin:0 0 1.05em}
+.pop .text a{color:#1a47e5;text-decoration:none}
+body.locked{overflow:hidden}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.pop-box{animation:none}}
+@media (max-width:600px){.pop-box{padding:72px 22px 48px}}
+@media (max-width:720px){.page-title{padding:56px 0 40px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="side">
+  <div class="side-top">
+  <a class="side-brand" href="index.html">
+    <img src="img/3.jpg" alt="" class="side-photo">
+    <span class="side-name">Ilona Melnychuk</span>
+  </a>
+  <section class="side-block" aria-label="Subscribe">
+    <form class="sub-form" novalidate>
+      <p class="side-p">Get these in your inbox</p>
+      <div class="sub-row">
+        <label for="sub-email">Email</label>
+        <input id="sub-email" name="email" type="email" autocomplete="email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
+      </div>
+      <div class="sub-msg" role="status"></div>
+    </form>
+  </section>
+  </div>
+  <nav class="side-list" id="side-list" aria-label="Writing"></nav>
+</aside>
+<div class="content">
+<main>
+  <div class="wrap">
+
+
+    <!-- Copy this block for each new note, newest first. Long pieces get a "Read the full piece" button automatically.
+         The title is optional: without an <h2>, the side panel shows the opening words. -->
+    <article class="note" id="overthink-and-do">
+      <time class="date" datetime="2026-11-21">21 November, 2026</time>
+      <h2><a href="#overthink-and-do">You can still overthink and do stuff</a></h2>
+      <div class="text">
+        <p>Just set aside some time.</p>
+        <p>“Today from 16:00-17:00 I’ll overthink”</p>
+        <p>and then go and do something else.</p>
+        <p>Buddhist monk’s advice.</p>
+      </div>
+    </article>
+
+    <article class="note" id="someone-did-similar">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#someone-did-similar">Someone has done something similar to you.</a></h2>
+      <div class="text">
+        <p>Now, why does that actually matter to you?</p>
+      </div>
+    </article>
+
+    <article class="note" id="i-share-my-path">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#i-share-my-path">I share my path, to help you create your own one</a></h2>
+      <div class="text">
+        <p>I’m happiest when I’m not on social media showing my life to others – when I take the time that I would have shared it to live it.</p>
+        <p>But I also want to help others. That gives me extra meaning to my life, and the money to continue living my life the way I want to, too.</p>
+        <p>So here it is. The purpose of sharing all that I do is to help you realise that you create meaning to your life by following your path, the path you create for you. Because meaning is not found, it’s created by you, for you.</p>
+      </div>
+    </article>
+
+    <article class="note" id="who-is-right">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#who-is-right">When you compare the path you’re on to someone else’s, how do you know who’s right?</a></h2>
+      <div class="text">
+        <p>Have you thought:</p>
+        <p>“Since my one is different to hers, and she looks so happy, and I’m not, her one must be the “right” one. Right. Reroute. Follow her.</p>
+        <p>Oh wait, she looks even more like me, maybe her path is even better for me. Um, yeah, follow her...</p>
+        <p>Oh wait, shoot... she looks even more...”</p>
+      </div>
+    </article>
+
+    <article class="note" id="rules-are-comforting">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#rules-are-comforting">Rules are comforting</a></h2>
+      <div class="text">
+        <p>Rules create a path that we think if we follow, we’ll reach happiness. So we either follow the rules someone else has created (12 Rules for Life, influencers, religions, the lives of others) or we create our own.</p>
+        <p>Rules give the comfort of hope that there is meaning to life to be found. I believe there is no meaning, and that’s uncomfortable to think about. It was for me, and I think it is for the people who “follow”.</p>
+        <p>I think we create our own paths, and just living life on the path we create is the only meaning to life. And if we want to make money from living a meaningful life, we share our “rules”, which are just words we use to describe the way we already lived.</p>
+        <p>I really don’t think that following someone else’s rules is the best way to live, but I also believe it helps many, just like rules of religions help many too.</p>
+      </div>
+    </article>
+
+    <article class="note" id="religion-right-path">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#religion-right-path">Priest, influencer... same same</a></h2>
+      <div class="text">
+        <p>Religion is a promise of a right path. I believe there isn’t a “right” path, hence why there are so many religions.</p>
+        <p>Some are more well known because their marketing was better.</p>
+        <p>And the creators of religions either thought the same or felt like the paths that the other religions have created were not quite right, hence why they created new ones.</p>
+        <p>And why new ones are still being created.</p>
+        <p>The most well known ones had the best and most consistent marketing, with the most budget.</p>
+        <p>The most modern type of “priest” with a “religion” is an influencer. They spread a belief, they have followers, they need budget for marketing to spread the belief and gain more followers. People pay them to get the details of how to live their path. More money, more message spread, more followers.</p>
+        <p>You can either choose a church, which seems to be helpful for a lot of people, or you can create your own path.</p>
+        <p>I think it’s good to know we have options.</p>
+      </div>
+    </article>
+
+    <article class="note" id="social-proof">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#social-proof">What does social proof actually ‘prove’?</a></h2>
+      <div class="text">
+        <p>Proof that someone has the right thing to do, or the right path in life.</p>
+        <p>It gives us reassurance that if so many other people also believe that they found the right path, that path must be a good one to follow. One that will give meaning to our life and make us happy too.</p>
+        <p>We think:</p>
+        <p>“I’m in to do what this person does, speak like this person speaks, buy the things this person has – since they just walked the right path before me, and thankfully, they’re showing how to do it now too”.</p>
+        <p>They just had the insight to create a path and follow it. Right or wrong does not exist.</p>
+      </div>
+    </article>
+
+    <article class="note" id="consistency-in-others">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#consistency-in-others">We like to see consistency in others because</a></h2>
+      <div class="text">
+        <p>it makes us feel that they have found the right path, if they’ve been on it for so long and they still seem so sure about it. It gives us more certainty that it could be a good one to follow for us too.</p>
+      </div>
+    </article>
+
+    <article class="note" id="failing-our-path">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#failing-our-path">We try to be experts, not beginners, to validate our own path in life</a></h2>
+      <div class="text">
+        <p>We try to be experts and not beginners because we want to show others that we have found a right path in life.</p>
+        <p>And we want to show it to others, and not just live it on our own, because we want the validation we indeed got it right, and ultimately that it’s worth putting our limited lifetime living it.</p>
+        <p>If we don’t get the support, we don’t validate that our path is right, we fail it, like a teacher fails the work on our exam.</p>
+        <p>So, we try again with a new path.</p>
+        <p>We create, we show, and we wait to see if, maybe this time, we’ve gotten our own path right.</p>
+      </div>
+    </article>
+
+    <article class="note" id="following-paths">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#following-paths">We follow the paths of others, hoping they found the “right one”</a></h2>
+      <div class="text">
+        <p>I feel like there is no meaning to life, like a “right path” or “the right thing to do”. But before we realise that, we think that there is. That’s why social media is so addictive. People show their lives and that makes us feel that they have figured it out.</p>
+        <p>That’s why we “follow” them. We literally feel like we want to follow their path and get the life that they’re showing us they’re having. If we use the products that they use, travel to the places they have, create the type of business that they have, maybe we can follow that and that would be a nice path for us.</p>
+        <p>I think every time we look at the lives of others we hope that their path could be one that we could follow too, since we think there is a right and wrong path, like one that we create would not make us happy.</p>
+        <p>But it never does. We never manage to follow others exactly. It never works. Something feels missing. And we either realise that there aren’t right paths that have been figured out, and create our own, or we keep searching, keep hoarding information on “the right things to do for a nice life”, but it’s an impossible task.</p>
+        <p>Trying to drink the ocean is even more realistic.</p>
+      </div>
+    </article>
+
+    <article class="note" id="bios-expire">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#bios-expire">Bios are hard to write because they expire almost immediately</a></h2>
+      <div class="text">
+        <p>That’s why it’s so hard to write an “About me” or “bio”. We change every day, so it would need to be updated every day. We are what we do; we become what we do (Sartre).</p>
+        <p>The most practical way to show someone who you are is to have them live and speak with you, to hear you talk and see you act. To do that on a large scale, to read your writing about your thoughts and watch videos of your actions in daily life. That’s a real “bio”.</p>
+      </div>
+    </article>
+
+    <article class="note" id="badassery">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#badassery">Badassery is creating your own path,</a></h2>
+      <div class="text">
+        <p>And not following that of others.</p>
+        <p>We like badass people because they show us that creating our own path is possible, because deep down we know that the path of others only has meaning to them, and not to us.</p>
+        <p>Because there is no meaning to be found, only created by us, for us.</p>
+      </div>
+    </article>
+
+    <article class="note" id="good-enough-to-follow">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#good-enough-to-follow">“Good enough” for others to follow</a></h2>
+      <div class="text">
+        <p>I think I get what “good enough” means now. I think I get what people mean when they are afraid of not “being good enough”.</p>
+        <p>Good enough to follow.</p>
+        <p>We either make our own path in life to follow (we don’t find it, we create it), or we think that there is a path to be found and others have found it, so we follow them.</p>
+        <p>I think, therefore, that when people are afraid to show their life on social media and they say that they don’t feel like they’re “good enough”, they mean that the path they are about to show, the one created, is not one that others would want to follow.</p>
+      </div>
+    </article>
+
+    <article class="note" id="i-create-my-own-meaning">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#i-create-my-own-meaning">Kinda cool that we can create our own meaning</a></h2>
+      <div class="text">
+        <p>I think there isn’t a “meaning of life” that can be found. Someone would have found it by now. I think there are two ways to see this. There’s no meaning, so what’s the point? Or, there is no meaning, so I can create my own point. And that’s kinda cool.</p>
+      </div>
+    </article>
+
+    <article class="note" id="kids-meaning-of-life">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#kids-meaning-of-life">Kids as the meaning of life</a></h2>
+      <div class="text">
+        <p>I think having children is a way to create personal meaning. Is it the meaning of life? No, there is none. Could it be one of the biggest meanings of your life? It could be, if you want it to be. But what if they die? Your meaning dies too. You need to find new meanings to continue to have a reason to live, or else you may find yourself with none.</p>
+      </div>
+    </article>
+
+    <article class="note" id="creating-my-meaning">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#creating-my-meaning">Creating my meaning, and helping others</a></h2>
+      <div class="text">
+        <p>I don’t think I’ll be able to help people find the meaning of their life, because I don’t think there is one. I think we just create meaning for ourselves. All I can do is show them how I created mine and how that’s going.</p>
+      </div>
+    </article>
+
+    <article class="note" id="life-meaning">
+      <time class="date" datetime="2026-11-20">20 November, 2026</time>
+      <h2><a href="#life-meaning">Meaning is created, not found</a></h2>
+      <div class="text">
+        <p>Is everything we do in life just a distraction from accepting that life has no meaning to be found? That it’s on us to create one, and we don’t want to accept that, so we just keep looking.</p>
+      </div>
+    </article>
+
+  </div>
+</main>
+</div>
+<footer class="page site-foot">© Ilona Melnychuk</footer>
+</div>
+<div class="pop" id="pop" role="dialog" aria-modal="true" aria-label="Writing">
+  <div class="pop-box" id="pop-box">
+    <button class="pop-close" id="pop-close" aria-label="Close">×</button>
+    <div class="pop-inner">
+      <time class="date" id="pop-date"></time>
+      <h2 id="pop-title"></h2>
+      <div class="text" id="pop-text"></div>
+    </div>
+  </div>
+</div>
+<script>
+{
+  const notes = [...document.querySelectorAll('.note')];
+  const pop = document.getElementById('pop'), box = document.getElementById('pop-box');
+  const closeBtn = document.getElementById('pop-close');
+  let lastFocus = null;
+
+  notes.forEach(n => {
+    const b = document.createElement('button');
+    b.className = 'read-btn'; b.type = 'button'; b.textContent = 'Read the full piece';
+    b.addEventListener('click', () => { location.hash = 'read-' + n.id; });
+    n.appendChild(b);
+  });
+
+  // Short if the piece fits in one screen, Long if it does not
+  const classify = () => {
+    const vh = window.innerHeight;
+    notes.forEach(n => {
+      n.classList.remove('is-long');
+      // Long: more than one screen. Its preview on the page is one and a quarter screens tall.
+      const long = n.offsetHeight > vh;
+      const txt = n.querySelector('.text');
+      const above = txt.getBoundingClientRect().top - n.getBoundingClientRect().top;
+      const preview = Math.max(200, 1.25 * vh - above - 120);
+      n.style.setProperty('--preview', preview + 'px');
+      n.classList.toggle('is-long', long && txt.scrollHeight > preview);
+    });
+  };
+
+  const open = (n) => {
+    lastFocus = document.activeElement;
+    document.getElementById('pop-date').textContent = n.querySelector('.date').textContent;
+    document.getElementById('pop-date').setAttribute('datetime', n.querySelector('.date').getAttribute('datetime') || '');
+    const h = n.querySelector('h2'), pt = document.getElementById('pop-title');
+    pt.textContent = h ? h.textContent : ''; pt.hidden = !h;
+    document.getElementById('pop-text').innerHTML = n.querySelector('.text').innerHTML;
+    pop.classList.add('open'); document.body.classList.add('locked');
+    box.scrollTop = 0; closeBtn.focus();
+  };
+  const close = () => {
+    pop.classList.remove('open'); document.body.classList.remove('locked');
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    if (lastFocus) lastFocus.focus();
+  };
+  // #read-<id> opens a long piece in the pop-up; #<id> only scrolls to the piece
+  const route = () => {
+    const h = location.hash.slice(1);
+    const r = h.startsWith('read-') ? notes.find(x => 'read-' + x.id === h) : null;
+    if (r && r.classList.contains('is-long')) { open(r); return; }
+    if (pop.classList.contains('open')) { pop.classList.remove('open'); document.body.classList.remove('locked'); }
+    const n = notes.find(x => x.id === h);
+    if (n) n.scrollIntoView();
+  };
+
+  closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', e => {
+    if (!pop.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
+  });
+  window.addEventListener('hashchange', route);
+  let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(classify, 150); });
+
+  const start = () => { classify(); route(); };
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start);
+}
+</script>
+<script src="writing.js"></script>
+<script>{ IM.formatDates(document); IM.subscribe(); IM.renderPanel(IM.collect(document), ''); }</script>
+</body>
+</html>
