@@ -101,7 +101,7 @@ window.IM = (() => {
   } catch (e) {}
   const cameFrom = () => { try { return sessionStorage.getItem('came_from') || 'Direct'; } catch (e) { return 'Direct'; } };
 
-  // Subscribe forms (side panel and the small sections between pieces)
+  // Subscribe form (side panel)
   const subscribe = () => {
     // Sign-ups go to the "Letters Sign Ups" Google Sheet through this Apps Script web app.
     const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzw9wyXwMTSFJONKj966KFxY6Oro766nk0WeEp7Fhz71z_beQZRb3x3Um3kJ_GO4t6YxA/exec';
@@ -133,22 +133,5 @@ window.IM = (() => {
     });
   };
 
-  // Small sign-up sections between pieces: after the 2nd, then after every 10th
-  const inlineSignups = () => {
-    const notes = [...document.querySelectorAll('article.note')];
-    notes.forEach((n, i) => {
-      const pos = i + 1;
-      if (pos === notes.length) return;
-      if (pos === 2 || pos % 10 === 0) {
-        const id = 'sub-email-' + pos;
-        const sec = document.createElement('section');
-        sec.className = 'sub-inline';
-        sec.setAttribute('aria-label', 'Subscribe');
-        sec.innerHTML = `<form class="sub-form" novalidate><p class="side-p">Get these in your inbox</p><div class="sub-row"><label for="${id}">Email</label><input id="${id}" name="email" type="email" autocomplete="email" placeholder="Your email" required><button type="submit">Subscribe</button></div><div class="sub-msg" role="status"></div></form>`;
-        n.after(sec);
-      }
-    });
-  };
-
-  return { collect, renderPanel, renderArchive, subscribe, inlineSignups, formatDates, fullDate };
+  return { collect, renderPanel, renderArchive, subscribe, formatDates, fullDate };
 })();
