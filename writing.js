@@ -71,10 +71,40 @@ window.IM = (() => {
     el.innerHTML = html || '<p class="arc-empty">Nothing published yet.</p>';
   };
 
+  // Where a visitor came from: worked out on the first page of the visit and kept for the visit,
+  // so it is still known when they subscribe on a later page.
+  const siteName = (host) => {
+    host = host.replace(/^www\./, '');
+    const known = {
+      'linkedin.com': 'LinkedIn', 'lnkd.in': 'LinkedIn',
+      'substack.com': 'Substack',
+      't.co': 'X', 'x.com': 'X', 'twitter.com': 'X',
+      'facebook.com': 'Facebook', 'm.facebook.com': 'Facebook', 'l.facebook.com': 'Facebook',
+      'instagram.com': 'Instagram', 'l.instagram.com': 'Instagram',
+      'mail.google.com': 'Gmail'
+    };
+    if (known[host]) return known[host];
+    if (/(^|\.)google\./.test(host)) return 'Google';
+    if (/(^|\.)bing\.com$/.test(host)) return 'Bing';
+    if (/\.substack\.com$/.test(host)) return 'Substack';
+    return host;
+  };
+  try {
+    if (!sessionStorage.getItem('came_from')) {
+      const tag = new URLSearchParams(location.search).get('utm_source');
+      const ref = document.referrer ? new URL(document.referrer).hostname : '';
+      let cameFrom = 'Direct';
+      if (tag) cameFrom = tag;
+      else if (ref && ref !== location.hostname) cameFrom = siteName(ref);
+      sessionStorage.setItem('came_from', cameFrom);
+    }
+  } catch (e) {}
+  const cameFrom = () => { try { return sessionStorage.getItem('came_from') || 'Direct'; } catch (e) { return 'Direct'; } };
+
   // Subscribe forms (side panel and the small sections between pieces)
   const subscribe = () => {
-    // Paste the sign-up address here (for example a Google Apps Script web app URL).
-    const ENDPOINT = '';
+    // Sign-ups go to the "Letters Sign Ups" Google Sheet through this Apps Script web app.
+    const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzw9wyXwMTSFJONKj966KFxY6Oro766nk0WeEp7Fhz71z_beQZRb3x3Um3kJ_GO4t6YxA/exec';
     document.querySelectorAll('form.sub-form').forEach(form => {
       const input = form.querySelector('input[type=email]');
       const msg = form.querySelector('.sub-msg');
@@ -89,7 +119,12 @@ window.IM = (() => {
           msg.className = 'sub-msg err'; msg.textContent = 'Sign-ups are not connected yet.'; return;
         }
         try {
-          await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ email, source: 'ilona-writing' }) });
+          await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({
+            email,
+            device: window.matchMedia('(max-width: 768px)').matches ? 'Mobile' : 'Desktop',
+            page: location.pathname + location.hash,
+            came_from: cameFrom()
+          }) });
           form.innerHTML = '<p class="sub-done">Thank you. New pieces will come to your inbox.</p>';
         } catch (err) {
           msg.className = 'sub-msg err'; msg.textContent = 'Something went wrong. Please try again.';
