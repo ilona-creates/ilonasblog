@@ -23,26 +23,26 @@ p{text-wrap:pretty}
 header{padding:28px 0}
 .header-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 20px}
 .brand-name{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;white-space:nowrap}
+.tabs{display:flex;gap:24px}
+@media (max-width:720px){.tabs{gap:16px}}
 .nav-link{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;
   border-bottom:1px solid var(--rule);padding:10px 0 4px;transition:border-color .2s ease}
-.nav-link:hover,.nav-link[aria-current]{border-bottom-color:var(--ink)}
+.nav-link:hover{border-bottom-color:var(--ink)}
+.nav-link[aria-current]{color:#5a55c8;border-bottom-color:#5a55c8}
 .link{color:inherit;text-decoration:underline;text-decoration-color:rgba(63,104,153,.5);text-decoration-thickness:1px;text-underline-offset:7px;transition:color .2s ease,text-decoration-color .2s ease}
 .link:hover{color:var(--blue-ink);text-decoration-color:var(--blue)}
 a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 footer.page{padding:48px 24px 56px;text-align:center;font-size:16px;color:var(--ink-soft);border-top:1px solid var(--rule)}
-.foot-note{max-width:34em;margin:0 auto 20px;font-style:italic;line-height:1.6;text-wrap:balance}
+.foot-note{max-width:34em;margin:0 auto 20px;line-height:1.6;text-wrap:balance}
 @media (max-width:720px){body{font-size:18px}.wrap{padding:0 24px}.brand-name,.nav-link{font-size:15px;letter-spacing:.04em}}
 
 .cover{padding:112px 0 64px}
 h1{font-family:var(--sans);font-weight:600;font-size:clamp(26px,3.4vw,40px);line-height:1.25;letter-spacing:-.005em;max-width:17em;text-wrap:balance}
 .strip{display:flex;gap:16px;overflow-x:auto;padding:0 max(32px,calc((100vw - var(--max))/2 + 32px)) 112px;scrollbar-width:thin}
 .strip img{height:clamp(220px,30vw,380px);width:auto;flex:none;display:block;border-radius:4px}
-.cover .link{display:inline;white-space:nowrap;color:#5a55c8;text-decoration:none;background:rgba(90,85,200,.08);border:1px solid rgba(90,85,200,.12);border-radius:5px;padding:.04em .32em .1em;transition:background .2s ease,border-color .2s ease,color .2s ease}
-.cover .arr{display:inline-block;margin-left:.3em;transition:transform .2s ease}
-.cover .arr svg{display:block;width:.78em;height:.43em;overflow:visible;position:relative;top:-.12em}
-.cover .link:hover .arr{transform:translateX(3px)}
-.cover .link:hover{background:rgba(90,85,200,.14);border-color:rgba(90,85,200,.24)}
 .cover h1{max-width:none;white-space:nowrap}
+.cover h1 a{color:#5a55c8;text-decoration:underline;text-decoration-color:#5a55c8;text-decoration-thickness:1px;text-underline-offset:.18em;transition:color .2s ease,text-decoration-color .2s ease}
+.cover h1 a:hover{color:#443fb0;text-decoration-color:#443fb0}
 @media (max-width:720px){.cover h1{font-size:clamp(15px,4.8vw,29px)}}
 @media (max-width:720px){.cover{padding:56px 0 48px}.strip{padding:0 24px 72px}}
 </style>
@@ -51,24 +51,25 @@ h1{font-family:var(--sans);font-weight:600;font-size:clamp(26px,3.4vw,40px);line
 <header>
   <div class="wrap header-inner">
     <a class="brand-name" href="index.html">Ilona Melnychuk</a>
+    <nav class="tabs"><a class="nav-link" href="notes.html">Writing</a><a class="nav-link" href="videos.html">Videos</a></nav>
   </div>
 </header>
 <main>
   <section class="cover">
     <div class="wrap">
-      <h1>I believe I am <a class="link" href="notes.html">what I think and do<span class="arr" aria-hidden="true"><svg viewBox="0 0 22 12" width="22" height="12" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path vector-effect="non-scaling-stroke" d="M1 6h19M16 2.5 20 6l-4 3.5"/></svg></span></a></h1>
+      <h1>I believe I am what I <a href="notes.html">think</a> and <a href="videos.html">do</a></h1>
     </div>
   </section>
   <section class="strip" aria-label="Photos">
     <img src="img/1.jpg" alt="Ilona at a Paris café, holding a green notebook">
-    <img src="img/2.jpg" alt="Ilona smiling under an arcade in the rain">
+    <img src="img/2.jpg" alt="Ilona writing in a notebook at a café table, seen through the window">
     <img src="img/3.jpg" alt="Portrait of Ilona smiling">
     <img src="img/5.jpg" alt="Ilona writing at a café table">
     <img src="img/4.jpg" alt="Ilona working on a laptop by the Seine">
   </section>
 </main>
 <footer class="page">
-  <p class="foot-note">I'd like to see myself evolve, and create something as I do. The writing on this website is my idea of what that looks like in practice.</p>
+  <p class="foot-note">I'd like to see myself evolve, and create something as I do. The writing and videos on this website is my idea of what that looks like in practice. My intention some part of all this is helpful for others too.</p>
   <p>© Ilona Melnychuk</p>
 </footer>
 <script src="writing.js"></script>

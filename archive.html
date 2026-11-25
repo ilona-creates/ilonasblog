@@ -23,9 +23,12 @@ p{text-wrap:pretty}
 header{padding:28px 0}
 .header-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 20px}
 .brand-name{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;white-space:nowrap}
+.tabs{display:flex;gap:24px}
+@media (max-width:720px){.tabs{gap:16px}}
 .nav-link{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;
   border-bottom:1px solid var(--rule);padding:10px 0 4px;transition:border-color .2s ease,color .2s ease}
-.nav-link:hover,.nav-link[aria-current]{border-bottom-color:var(--ink)}
+.nav-link:hover{border-bottom-color:var(--ink)}
+.nav-link[aria-current]{color:#5a55c8;border-bottom-color:#5a55c8}
 .link{color:inherit;text-decoration:underline;text-decoration-color:rgba(63,104,153,.5);text-decoration-thickness:1px;text-underline-offset:7px;transition:color .2s ease,text-decoration-color .2s ease}
 .link:hover{color:var(--blue-ink);text-decoration-color:var(--blue)}
 a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
@@ -122,6 +125,7 @@ body.locked{overflow:hidden}
 <header>
   <div class="wrap header-inner">
     <a class="brand-name" href="index.html">Ilona Melnychuk</a>
+    <nav class="tabs"><a class="nav-link" href="notes.html" aria-current="page">Writing</a><a class="nav-link" href="videos.html">Videos</a></nav>
   </div>
 </header>
 <div class="content">

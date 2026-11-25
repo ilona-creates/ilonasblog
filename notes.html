@@ -23,9 +23,12 @@ p{text-wrap:pretty}
 header{padding:28px 0}
 .header-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 20px}
 .brand-name{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;white-space:nowrap}
+.tabs{display:flex;gap:24px}
+@media (max-width:720px){.tabs{gap:16px}}
 .nav-link{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;
   border-bottom:1px solid var(--rule);padding:10px 0 4px;transition:border-color .2s ease,color .2s ease}
-.nav-link:hover,.nav-link[aria-current]{border-bottom-color:var(--ink)}
+.nav-link:hover{border-bottom-color:var(--ink)}
+.nav-link[aria-current]{color:#5a55c8;border-bottom-color:#5a55c8}
 .link{color:inherit;text-decoration:underline;text-decoration-color:rgba(63,104,153,.5);text-decoration-thickness:1px;text-underline-offset:7px;transition:color .2s ease,text-decoration-color .2s ease}
 .link:hover{color:var(--blue-ink);text-decoration-color:var(--blue)}
 a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
@@ -65,12 +68,20 @@ main .wrap{max-width:calc(36em + 64px)}
 .side-titles a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-color:#c9ccd2}
 .side-all{display:inline-block;font-size:16px;font-weight:600;color:var(--ink-soft);text-decoration:none;border-bottom:1px solid #c9ccd2;padding:8px 0 2px}
 .side-all:hover{color:var(--ink);border-bottom-color:var(--ink)}
-.content main{padding-top:24px}
+.content main{padding-top:0}
 .note:first-of-type{border-top:0;padding-top:40px}
 .site-foot{grid-column:2}
 
+/* small name link back home: phones and tablets only */
+.m-head{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:8px 20px;max-width:calc(36em + 64px);margin:0 auto;padding:28px 32px 0}
+.m-head .brand-name{display:none}
+.m-list-title{display:none;font-weight:600;font-size:28px;line-height:1.2}
 /* phones and tablets: name and sign-up on top, writing next, list of titles last */
 @media (max-width:900px){
+  .m-head{justify-content:space-between;padding:20px 24px 0}
+  .m-head .brand-name{display:inline}
+  .side-top .side-brand{display:none}
+  .m-list-title{display:block}
   .layout{display:flex;flex-direction:column}
   .side{display:contents}
   .content{order:1}
@@ -123,6 +134,7 @@ body.locked{overflow:hidden}
     <img src="img/3.jpg" alt="" class="side-photo">
     <span class="side-name">Ilona Melnychuk</span>
   </a>
+  <h2 class="m-list-title">All my writing</h2>
   <section class="side-block" aria-label="Subscribe">
     <form class="sub-form" novalidate>
       <p class="side-p">Get these in your inbox</p>
@@ -138,6 +150,7 @@ body.locked{overflow:hidden}
   <nav class="side-list" id="side-list" aria-label="Writing"></nav>
 </aside>
 <div class="content">
+<header class="m-head"><a class="brand-name" href="index.html">Ilona Melnychuk</a><nav class="tabs"><a class="nav-link" href="notes.html" aria-current="page">Writing</a><a class="nav-link" href="videos.html">Videos</a></nav></header>
 <main>
   <div class="wrap">
 
@@ -146,12 +159,15 @@ body.locked{overflow:hidden}
          The title is optional: without an <h2>, the side panel shows the opening words. -->
     <article class="note" id="social-media-spark">
       <time class="date" datetime="2026-11-25">25 November, 2026</time>
-      <h2><a href="#social-media-spark">We come to social media excited to create, some of us manage it, and some of us get our spark extinguished</a></h2>
+      <h2><a href="#social-media-spark">I think it is possible to create and show it on social media and not have your joy of creating taken away by it</a></h2>
       <div class="text">
-        <p>I feel like people, like me, create and go publish their creations on social media, with good intention, with good hearts, with hope and initial joy. Then the noise comes, all the other people, all the buttons, the options, the styles, the advice, the decisions, the bios, confuses our spark and makes us wonder how stupid we were to even try putting ourselves in the middle of all this</p>
-        <p>So we go back and re-search and search and search, trying to find the version that when we get the courage to get back there again, this time it will be perfect. But social media is not designed to be this way. It’s designed to have us keep coming back for answers and inspirations, that never quite feels whole or complete.</p>
-        <p>That said, I don’t think social media is evil, “head off with social media”, actually no. I think it’s great. It’s a great place to get your creations marketed with super specialised algorithms to reach ‘our people’. But I do also think we should know how it works, why it makes us feel the way it does and use it in the way that serves us, and not let it squish our beauty and creativity by not knowing how it affects us.</p>
-        <p>Create, get in, get out, go create again and listen only to yourself, put on your noise cancelling headphones from everything else, you don’t need it, you already have everything you need and we all want to know what it is</p>
+        <p>I feel like people, like me, create and go publish their creations on social media, with good intention, with good hearts, with hope and initial joy.</p>
+        <p>Then the noise comes, all the other people, all the buttons, the options, the styles, the advice, the decisions, the bios, confuses our spark and makes us wonder how stupid we were to even try putting ourselves in the middle of all this.</p>
+        <p>So we go back and re-search and search and search, trying to find the version that when we get the courage to get back there again, this time it will be perfect.</p>
+        <p>But social media is not designed to be this way. It’s designed to have us keep coming back for answers and inspirations, that never quite feels whole or complete.</p>
+        <p>That said, I don’t think social media is evil, “head off with social media”, actually no. I think it’s great.</p>
+        <p>It’s a great place to get your creations marketed with super specialised algorithms to reach ‘our people’. But I do also think we should know how it works, why it makes us feel the way it does and use it in the way that serves us, and not let it squish our beauty and creativity by not knowing how it affects us.</p>
+        <p>Create, get in, get out, go create again and listen only to yourself, put on your noise cancelling headphones from everything else, you don’t need it, you already have everything you need and we all want to know what it is.</p>
       </div>
       <p class="place">Phnom Penh, 15:49 ICT</p>
     </article>
