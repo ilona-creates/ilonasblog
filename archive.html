@@ -174,7 +174,7 @@ body.locked{overflow:hidden}
     pop.classList.add('open'); document.body.classList.add('locked');
     // put the clicked title a little above the middle of the screen
     box.scrollTop = 0;
-    const h = piece.querySelector('h2').getBoundingClientRect(), b = box.getBoundingClientRect();
+    const h = (piece.querySelector('h2') || piece.querySelector('.text')).getBoundingClientRect(), b = box.getBoundingClientRect();
     box.scrollTop = h.top - b.top - box.clientHeight * 0.38 + h.height / 2;
     box.focus({ preventScroll: true });
   };
